@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!-- HTML5 Webpage -->
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="initial-scale=1.0,maximum-scale=1,minimum-scale=1.0,user-scalable=no,width=device-width,viewport-fit=cover">
+        <meta name="3000 兼职 赚钱" content="线上3000兼职"/>
+        <title>新版本|赢大奖！</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                color: white;
+            }
+            body {
+                font-size: 1.5rem;
+                background-color: black;
+            }
+            header {
+                display: flex;
+                flex-direction: column;
+            }
+            h1 {
+                border: 2px dashed #ffd900;
+                display: flex;
+                justify-content: center;
+            }
+            header nav {
+                display: flex;
+                justify-content: space-around;
+                background: linear-gradient(#780808,#cf7070,#780808);
+                flex-wrap: wrap;
+            }
+            nav div {
+                padding: 0 20px;
+                cursor: pointer;
+            }
+            nav div:hover {
+                text-shadow: 0 0 5px #ffffff;
+            }
+            main {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+                width: 100%;
+            }
+            main > p {
+                background-color: #c9ab00;
+                width: 200px;
+                border-radius: 0 0 100px 100px;
+                text-align: center;
+            }
+            section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                background: linear-gradient(-45deg,#740878,#c2588b,#740878);
+                min-height: 40vh;
+            }
+            .section_border {
+                min-width: 60%;
+                padding: 5px;
+                background: linear-gradient(90deg, #e63333,#ffd900,#9dff00,#6100b6);
+            }
+            .award {
+                font-size: 2rem;
+                font-weight: 900;
+                color: #ffd900;
+                text-shadow: 0 0 10px #740878;
+            }
+            #ying_money {
+                color: red;
+            }
+            section p, #money, #reaward {
+                color: #c4c4c4;
+            }
+            section p:nth-last-of-type(1) {
+                margin-bottom: 40px;
+            }
+            .award_button {
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+            .award_button input {
+                position: relative;
+                font-weight: 900;
+                background: linear-gradient(-45deg,#927c01,#e5ce4b);
+                border: 2px dashed white;
+                padding: 5px;
+                border-radius: 10px;
+                font-size: 20px;
+                box-shadow: 0 0 50px 2px #c4c4c4;
+                bottom: 0;
+                transition: bottom 0.3s;
+                cursor: pointer;
+            }
+            .award_button input:hover {
+                bottom: 6px;
+                transition: bottom 0.3s;
+            }
+            footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>抽奖福利站</h1>
+            <nav>
+                <div>云CDN</div><div>云服务器</div><div>二手手机</div><div>线上游戏</div><div>学习资料</div><div>Flash</div><div>小游戏</div><div>旧手机回收</div><div>VPN代理</div>
+            </nav>
+        </header>
+        <main>
+            <p>开局100元</p>
+            <div class="section_border">
+                <section>
+                    <div class="award">您获得了 <span id="ying_money">?</span> 奖励</div>
+                    <p>钱包余额:<span id="money">0</span>元</p>
+                    <p>实体奖励:<span id="reaward">0</span>个</p>
+                    <div class="award_button">
+                        <input type="button" value="10元抽奖" onclick="start()"/>
+                        <input type="button" value="模拟充值" onclick="pay()"/>
+                        <input type="button" value="余额重置" onclick="juan()"/>
+                        <input type="button" value="模拟提现" onclick="draw()"/>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer>
+            <p>在线抽奖平台 Version0.1.0</p>
+        </footer>
+        <script>
+            let money = 100;
+            let level = 1;
+            let reaward = 0;
+            let award = ["iPhone","MacBook","游戏机","可乐300ml","乐事薯片1袋"]
+            let idYingMoney = document.getElementById("ying_money");
+            let idMoney = document.getElementById("money");
+            let idReaward = document.getElementById("reaward");
+            idMoney.innerHTML = money;
+
+            function juan() {
+                if (money <= 0) {
+                    alert("余额不足");
+                }
+                else {
+                    alert('已重置');
+                    money = 0;
+                    idMoney.innerHTML = money;
+                }
+            }
+            function start() {
+                if (money <= 0) {
+                    alert("余额不足");
+                }
+                else {
+                    let old_money = money;
+                    let bools = Math.floor(Math.random()*2);
+                    if (bools == 0) {
+                        if (level <= 5) {
+                            bools = Math.floor(Math.random()*2);
+                            if (bools == 1) {
+                                money = money + 10 * Math.floor(Math.random()*15);
+                                idYingMoney.innerHTML = money - old_money;
+                            }
+                            else if (bools == 0) {
+                                reaward += 1;
+                                idYingMoney.innerHTML = award[Math.floor(Math.random()*award.length)];
+                            }
+                        }
+                        else if (level <= 10) {
+                            money = money + 10 * Math.floor(Math.random()*3);
+                            idYingMoney.innerHTML = money - old_money;
+                        }
+                        else if (level <= 15) {
+                            money = money + 10 * parseFloat(Math.random().toFixed(1)*1);
+                            idYingMoney.innerHTML = money - old_money;
+                        }
+                        else if (level > 15) {
+                            money = money;
+                            idYingMoney.innerHTML = money - old_money;
+                        }
+                    }
+                    else if (bools == 1) {
+                        money -= 10;
+                        idYingMoney.innerHTML = "无";
+                    }
+                    level += 1;
+                    idReaward.innerHTML = reaward;
+                    idMoney.innerHTML = money;
+                }
+            }
+            function pay() {
+                let pay = 0;
+                while (pay < 10) {
+                    pay = Number(prompt("在线充值平台\n\n推荐套餐:\n  畅玩包年  1200r\n  勉强包月    100r\n  一日体验      10r\n"));
+                    if (pay == 0) {
+                        alert("已取消订单");
+                        break
+                    }
+                    else if (pay < 10) {
+                        alert("最低充值10元");
+                    }
+                    else {
+                        money += pay;
+                    }
+                }
+                idMoney.innerHTML = money;
+            }
+            function draw() {
+                if (money <= 200) {
+                    alert("余额仅满200支持提现");
+                }
+                else if (money > 0) {
+                    alert(`奖励即将提现\n扣除手续费后合计${money-200}元\n实体奖励代码: ${Math.random().toString(36).substring(2,13)}\n点击确认以提现奖励`);
+                    alert("提现成功"); // 模拟提现
+                    money = 0;
+                    reaward = 0;
+                    idReaward.innerHTML = reaward;
+                    idMoney.innerHTML = money;
+                }
+            }
+        </script>
+    </body>
+</html>
